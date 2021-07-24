@@ -1,12 +1,16 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'control_panel.dart';
 import 'direction.dart';
 import 'direction_type.dart';
 import 'piece.dart';
+
+import 'package:device_info/device_info.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -30,6 +34,26 @@ class _GamePageState extends State<GamePage> {
   double speed = 1;
 
   int score = 0;
+
+
+  static Future<String> getDeviceDetails() async {
+    try {
+      var deviceInfoPlugin = new DeviceInfoPlugin();
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        return build.androidId;  //UUID for Android
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        return data.identifierForVendor;  //UUID for iOS
+      }
+    } catch(e) {
+      print('Failed to get platform version');
+      return " ";
+    }
+    return " ";
+  }
+
+
 
   void draw() async {
     if (positions.length == 0) {
@@ -108,6 +132,7 @@ class _GamePageState extends State<GamePage> {
             "Your game is over but you played well. Your score is " + score.toString() + ".",
             style: TextStyle(color: Colors.white),
           ),
+
           actions: [
             FlatButton(
               onPressed: () async {
@@ -285,7 +310,7 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text("Snake"),
+        title: Text("Snake" + getDeviceDetails().toString()),
 
       ),
       body: Container(
