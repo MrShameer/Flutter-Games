@@ -39,7 +39,7 @@ class _GamePageState extends State<GamePage> {
   int score = 0;
 
   String deviceID = "";
-  String highscore = "";
+  int  highscore = 0;
 
   static Future<String> getDeviceDetails() async {
     try {
@@ -58,16 +58,15 @@ class _GamePageState extends State<GamePage> {
     return " ";
   }
 
-  Future<List> senddata(String ids, String score) async {
+  Future<List> senddata(String ids, int score) async {
     final response = await http.post(Uri.parse("http://lrgs.ftsm.ukm.my/users/a173586/snake/insert.php/"), body: {
       "id": ids,
-      "score": score,
+      "score": score.toString(),
     });
   }
 
   static Future<String> connectToAPI(String id) async {
     String apiURL = "http://lrgs.ftsm.ukm.my/users/a173586/snake/snake.php?id=\"" + id + "\"";
-
     var apiResult = await http.get(Uri.parse(apiURL));
     var jsonObject = json.decode(apiResult.body);
     return jsonObject;
@@ -75,11 +74,6 @@ class _GamePageState extends State<GamePage> {
 
 
   void draw() async {
-    // connectToAPI(deviceID).then((value){
-    //   highscore = value;
-    //   print(highscore);
-    // });
-   // await connectToAPI(deviceID);
     if (positions.length == 0) {
       positions.add(getRandomPositionWithinRange());
     }
@@ -160,6 +154,7 @@ class _GamePageState extends State<GamePage> {
           actions: [
             FlatButton(
               onPressed: () async {
+
                 //Navigator.of(context).pop();
                 Navigator.of(context, rootNavigator: true).pop('dialog');
                 restart();
@@ -208,8 +203,11 @@ class _GamePageState extends State<GamePage> {
       length++;
       speed = speed + 0.25;
       score = score + 5;
+      if(score>highscore){
+        highscore=score;
+        senddata(deviceID,highscore);
+      }
       changeSpeed();
-
       foodPosition = getRandomPositionWithinRange();
     }
 
@@ -279,15 +277,14 @@ class _GamePageState extends State<GamePage> {
 
 
   Widget getScore() {
-    // connectToAPI(deviceID).then((value){
-    //   highscore = value;
-    //   print(highscore);
-    // });
+    connectToAPI(deviceID).then((value){
+      highscore = int.parse(value);
+    });
     return Positioned(
       top: 50.0,
       right: 40.0,
       child: Text(
-        "HighScore: " + highscore + "Score: " + score.toString(),
+        "HighScore: " + highscore.toString() + " Score: " + score.toString(),
         style: TextStyle(fontSize: 24.0),
       ),
     );
@@ -323,7 +320,6 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState(){
     super.initState();
-    //await connectToAPI(deviceID);
     restart();
   }
 
@@ -336,14 +332,10 @@ class _GamePageState extends State<GamePage> {
     lowerBoundY = step;
     upperBoundX = roundToNearestTens(screenWidth.toInt() - step);
     upperBoundY = roundToNearestTens(screenHeight.toInt() - step);
-    //print(getDeviceDetails());
 
     getDeviceDetails().then((value){
       deviceID = value;
-      senddata(value,value);
     });
-
-
 
     return Scaffold(
       appBar: AppBar(
