@@ -34,6 +34,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - images/
+    - images/solitaire/
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

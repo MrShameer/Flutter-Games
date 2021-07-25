@@ -23,7 +23,11 @@ final Game snake = Game(
   play:
       'snake',
   description:
-  'The battle for suburbia grows to crazy new heights! In this hilarious, action-packed shooter, zombie leader Dr. Zomboss has strengthened his horde and rebuilt suburbia as a zombie utopia. But hope remains, because for the first time the plants are taking the offensive in an all-out attack to reclaim their turf. Play as the plants in the all-new 24-player Herbal Assault mode, or choose your side in 4-player co-op or Solo Play!',
+  'The player controls a dot, square, or object on a bordered plane. '
+      'As it moves forward, it leaves a trail behind, resembling a moving snake. '
+      'In some games, the end of the trail is in a fixed position, so the snake continually gets longer as it moves. '
+      'In another common scheme, the snake has a specific length, so there is a moving tail a fixed number of units away from the head. '
+      'The player loses when the snake runs into the screen border, a trail, other obstacle, or itself.',
   platforms: [
     'MOBILE',
     'PC',
@@ -48,17 +52,20 @@ final Game tictactoe = Game(
   play:
   'tic',
   description:
-  'The battle for suburbia grows to crazy new heights! In this hilarious, action-packed shooter, zombie leader Dr. Zomboss has strengthened his horde and rebuilt suburbia as a zombie utopia. But hope remains, because for the first time the plants are taking the offensive in an all-out attack to reclaim their turf. Play as the plants in the all-new 24-player Herbal Assault mode, or choose your side in 4-player co-op or Solo Play!',
+  'Tic-tac-toe (American English), noughts and crosses (Commonwealth English and British English), '
+      'or Xs and Os/“X’y O’sies” (Ireland), is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. '
+      'The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. '
+      'It is a solved game with a forced draw assuming best play from both players.',
   platforms: [
     'XBOX ONE',
     'PS4',
   ],
   rating: 4,
   screenshots: [
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_1.jpg',
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_2.jpg',
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_3.jpg',
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_4.jpg',
+    'https://images.cdn3.stockunlimited.net/preview1300/tic-tac-toe-pattern-background_1242337.jpg',
+    'https://raw.githubusercontent.com/Datlyfe/flutter_tic_tac/master/screenshots/1.jpg',
+    'https://raw.githubusercontent.com/Datlyfe/flutter_tic_tac/master/screenshots/2.jpg',
+    'https://raw.githubusercontent.com/Datlyfe/flutter_tic_tac/master/screenshots/3.jpg',
   ],
 );
 
@@ -71,17 +78,19 @@ final Game solitaire = Game(
   play:
   'soli',
   description:
-  'The battle for suburbia grows to crazy new heights! In this hilarious, action-packed shooter, zombie leader Dr. Zomboss has strengthened his horde and rebuilt suburbia as a zombie utopia. But hope remains, because for the first time the plants are taking the offensive in an all-out attack to reclaim their turf. Play as the plants in the all-new 24-player Herbal Assault mode, or choose your side in 4-player co-op or Solo Play!',
+  'Solitaire is any tabletop game which one can play by oneself, usually with cards, but also with dominoes. '
+      'The term "solitaire" is also used for single-player games of concentration and skill using a set layout tiles, pegs or stones. '
+      'These games include peg solitaire and mahjong solitaire. The game is most often played by one person, but can incorporate others.',
   platforms: [
     'XBOX ONE',
     'PS4',
   ],
   rating: 4,
   screenshots: [
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_1.jpg',
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_2.jpg',
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_3.jpg',
-    'https://raw.githubusercontent.com/searchy2/FlutterGames/master/images/screenshot/pvzgw2_4.jpg',
+    'https://static.wixstatic.com/media/76608c_035741a8159e4bb980a66a9290eb2ed1~mv2.png/v1/fill/w_640,h_538,al_c,q_85,usm_0.66_1.00_0.01/76608c_035741a8159e4bb980a66a9290eb2ed1~mv2.webp',
+    'https://store-images.s-microsoft.com/image/apps.14775.13575886585416075.85dfba76-0c32-4f8c-8300-d064224db816.0b91e923-c01a-431b-b44b-02140096d522?mode=scale&q=90&h=200&w=200&background=%23447E29',
+    'https://store-images.s-microsoft.com/image/apps.29525.14623861565022440.58d2ed30-203d-496e-87fa-b3d9506c634e.e4826514-ec0a-4192-90ed-cd15605dc379?mode=scale&q=90&h=1080&w=1920',
+    'https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/00/82/09/008209bf-012a-3639-0fdd-4a9445e9560e/source/512x512bb.jpg',
   ],
 );
 

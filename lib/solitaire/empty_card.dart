@@ -83,13 +83,13 @@ class _EmptyCardDeckState extends State<EmptyCardDeck> {
   Image _suitToImage() {
     switch (widget.cardSuit) {
       case CardSuit.hearts:
-        return Image.asset('../images/solitaire/hearts.png');
+        return Image.asset('images/solitaire/hearts.png');
       case CardSuit.diamonds:
-        return Image.asset('../images/solitaire/diamonds.png');
+        return Image.asset('images/solitaire/diamonds.png');
       case CardSuit.clubs:
-        return Image.asset('../images/solitaire/clubs.png');
+        return Image.asset('images/solitaire/clubs.png');
       case CardSuit.spades:
-        return Image.asset('../images/solitaire/spades.png');
+        return Image.asset('images/solitaire/spades.png');
       default:
         return null;
     }
