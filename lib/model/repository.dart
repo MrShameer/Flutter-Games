@@ -12,6 +12,8 @@ final List<Game> newGamesList = [
 ];
 final List<Game> popularGamesList = [codww2, fallout4, fc5, pvzgw2, riseoftr];
 
+final List<Game> playNow = [snake, tictactoe, solitaire];
+
 final Game snake = Game(
   name: 'Classis Snake Game 2D',
   box:

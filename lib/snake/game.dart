@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
@@ -11,9 +12,11 @@ import 'direction_type.dart';
 import 'piece.dart';
 
 import 'package:device_info/device_info.dart';
+import 'package:http/http.dart' as http;
 
 class GamePage extends StatefulWidget {
   @override
+
   _GamePageState createState() => _GamePageState();
 }
 
@@ -35,6 +38,8 @@ class _GamePageState extends State<GamePage> {
 
   int score = 0;
 
+  String deviceID = "";
+  String highscore = "";
 
   static Future<String> getDeviceDetails() async {
     try {
@@ -53,9 +58,28 @@ class _GamePageState extends State<GamePage> {
     return " ";
   }
 
+  Future<List> senddata(String ids, String score) async {
+    final response = await http.post(Uri.parse("http://lrgs.ftsm.ukm.my/users/a173586/snake/insert.php/"), body: {
+      "id": ids,
+      "score": score,
+    });
+  }
+
+  static Future<String> connectToAPI(String id) async {
+    String apiURL = "http://lrgs.ftsm.ukm.my/users/a173586/snake/snake.php?id=\"" + id + "\"";
+
+    var apiResult = await http.get(Uri.parse(apiURL));
+    var jsonObject = json.decode(apiResult.body);
+    return jsonObject;
+  }
 
 
   void draw() async {
+    // connectToAPI(deviceID).then((value){
+    //   highscore = value;
+    //   print(highscore);
+    // });
+   // await connectToAPI(deviceID);
     if (positions.length == 0) {
       positions.add(getRandomPositionWithinRange());
     }
@@ -252,12 +276,18 @@ class _GamePageState extends State<GamePage> {
     });
   }
 
+
+
   Widget getScore() {
+    // connectToAPI(deviceID).then((value){
+    //   highscore = value;
+    //   print(highscore);
+    // });
     return Positioned(
       top: 50.0,
       right: 40.0,
       child: Text(
-        "Score: " + score.toString(),
+        "HighScore: " + highscore + "Score: " + score.toString(),
         style: TextStyle(fontSize: 24.0),
       ),
     );
@@ -291,9 +321,9 @@ class _GamePageState extends State<GamePage> {
   }
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
-
+    //await connectToAPI(deviceID);
     restart();
   }
 
@@ -306,12 +336,18 @@ class _GamePageState extends State<GamePage> {
     lowerBoundY = step;
     upperBoundX = roundToNearestTens(screenWidth.toInt() - step);
     upperBoundY = roundToNearestTens(screenHeight.toInt() - step);
+    //print(getDeviceDetails());
+
+    getDeviceDetails().then((value){
+      deviceID = value;
+      senddata(value,value);
+    });
+
+
 
     return Scaffold(
       appBar: AppBar(
-
-        title: Text("Snake" + getDeviceDetails().toString()),
-
+        title: Text("Snake"),
       ),
       body: Container(
         color: Color(0XFFF5BB00),

@@ -63,6 +63,29 @@ class _GamesPageState extends State<GamesPage> {
                 ]),
           ),
           HorizontalGameController(popularGamesList),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 8, 8),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Play Now",
+                    style: Theme.of(context).textTheme.subhead,
+                  ),
+                  InkWell(
+                    onTap: () => {},
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      child: Text(
+                        "Browse All",
+                        style: Theme.of(context).textTheme.display2,
+                      ),
+                    ),
+                  ),
+                ]),
+          ),
+          HorizontalGameController(playNow),
         ],
       ),
     );
